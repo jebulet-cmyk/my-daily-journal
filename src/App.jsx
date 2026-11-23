@@ -144,7 +144,38 @@ const login = async () => {
 };
 
 
-  const addTracker = async () => {
+ 
+const addTracker = async () => {
+  if (!user) {
+    alert("Silakan login terlebih dahulu.");
+    return;
+  }
+
+  if (!newTracker.trim()) {
+    alert("Nama tracker tidak boleh kosong.");
+    return;
+  }
+
+  try {
+    await addDoc(userCollection("trackers"), {
+      name: newTracker.trim(),
+      type: trackerType,
+      createdAt: Date.now()
+    });
+
+    setNewTracker("");
+    alert("Tracker berhasil ditambahkan!");
+
+  } catch (error) {
+    console.error("Gagal menambahkan tracker:", error);
+    alert(
+      "Tracker gagal ditambahkan: " +
+      error.code + "\n" +
+      error.message
+    );
+  }
+};
+
     if (!newTracker.trim()) return;
 
     await addDoc(userCollection("trackers"),{
