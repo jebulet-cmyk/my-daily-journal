@@ -79,27 +79,59 @@ export default function App() {
     });
   }, []);
 
+  
   useEffect(() => {
     if (!user) return;
 
-    const unsub1 = onSnapshot(userCollection("trackers"),snap => {
-      setTrackers(snap.docs.map(d=>({id:d.id,...d.data()})));
-    });
+    const unsub1 = onSnapshot(
+      userCollection("trackers"),
+      async snap => {
+        setTrackers(snap.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        })));
 
-    const unsub2 = onSnapshot(userCollection("entries"),snap => {
-      setEntries(snap.docs.map(d=>({id:d.id,...d.data()})));
-    });
+        if (snap.empty) {
+          for (const tracker of defaults) {
+            const id = tracker.name
+              .toLowerCase()
+              .replaceAll(" ", "-");
 
-    const unsub3 = onSnapshot(userCollection("tasks"),snap => {
-      setTasks(snap.docs.map(d=>({id:d.id,...d.data()})));
-    });
+            await setDoc(
+              doc(db, "users", user.uid, "trackers", id),
+              tracker
+            );
+          }
+        }
+      }
+    );
+
+    const unsub2 = onSnapshot(
+      userCollection("entries"),
+      snap => {
+        setEntries(snap.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        })));
+      }
+    );
+
+    const unsub3 = onSnapshot(
+      userCollection("tasks"),
+      snap => {
+        setTasks(snap.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        })));
+      }
+    );
 
     return () => {
       unsub1();
       unsub2();
       unsub3();
     };
-  },[user]);
+  }, [user]);
 
   const login = () =>
     signInWithPopup(auth,googleProvider);
