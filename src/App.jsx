@@ -145,6 +145,7 @@ const login = async () => {
 
 
  
+
 const addTracker = async () => {
   if (!user) {
     alert("Silakan login terlebih dahulu.");
@@ -176,19 +177,8 @@ const addTracker = async () => {
   }
 };
 
-    if (!newTracker.trim()) return;
-
-    await addDoc(userCollection("trackers"),{
-      name:newTracker.trim(),
-      type:trackerType,
-      createdAt:Date.now()
-    });
-
-    setNewTracker("");
-  };
-
-  const removeTracker = async id => {
-    if (!window.confirm("Hapus tracker ini beserta riwayatnya?")) return;
+const removeTracker = async id => {
+  if (!window.confirm("Hapus tracker ini beserta riwayatnya?")) return;
 
     const related=entries.filter(e=>e.trackerId===id);
 
