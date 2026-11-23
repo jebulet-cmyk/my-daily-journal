@@ -144,8 +144,6 @@ const login = async () => {
 };
 
 
- 
-
 const addTracker = async () => {
   if (!user) {
     alert("Silakan login terlebih dahulu.");
