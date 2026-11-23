@@ -237,22 +237,27 @@ export default function App() {
     return <div className="loading">Loading My Daily Journal ♡</div>;
   }
 
-  if (!user) {
-    return (
-      <main className="login-screen">
-        <div className="login-card">
-          <div className="logo">♡</div>
-          <p className="eyebrow">YOUR PERSONAL LIFE ORGANIZER</p>
-          <h1>My Daily Journal</h1>
-          <p>Plan your day, track your habits, and grow every day.</p>
-          <button className="primary full" onClick={login}>
-            Masuk dengan Google
-          </button>
-          <small>Jurnal pribadi • Aman • Tersimpan online</small>
-        </div>
-      </main>
-    );
-  }
+ 
+if (!user) {
+  return (
+    <main className="login-screen">
+      <div className="login-card">
+        <div className="logo">♡</div>
+        <p className="eyebrow">YOUR PERSONAL LIFE ORGANIZER</p>
+        <h1>My Daily Journal</h1>
+        <p>Plan your day, track your habits, and grow every day.</p>
+        <button className="primary full" onClick={login}>
+          Masuk dengan Google
+        </button>
+        <small>Jurnal pribadi • Aman • Tersimpan online</small>
+
+        <footer style={{ marginTop: "24px", color: "#888", fontSize: "12px" }}>
+          Made with ❤️ by <b style={{ color: "#818CF8" }}>ZuliTwin</b>
+        </footer>
+      </div>
+    </main>
+  );
+}
 
   const nav = [
     ["Dashboard",<Home/>],
