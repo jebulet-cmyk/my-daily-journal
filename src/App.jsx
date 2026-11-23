@@ -133,8 +133,16 @@ export default function App() {
     };
   }, [user]);
 
-  const login = () =>
-    signInWithPopup(auth,googleProvider);
+ 
+const login = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+  } catch (error) {
+    console.error("Login Google gagal:", error);
+    alert("Login gagal: " + error.code + "\n" + error.message);
+  }
+};
+
 
   const addTracker = async () => {
     if (!newTracker.trim()) return;
