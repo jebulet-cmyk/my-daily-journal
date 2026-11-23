@@ -303,35 +303,58 @@ if (!user) {
     return <Sparkles/>;
   };
 
-  return (
-    <div className="app">
-      <aside className="sidebar">
-        <div className="brand">♡ My Daily Journal</div>
+  
+return (
+  <div className="app">
+    <aside className="sidebar">
+      <div className="brand">♡ My Daily Journal</div>
 
-        <div className="user-info">
-          <img src={user.photoURL} alt="Profile"/>
-          <div>
-            <b>{user.displayName}</b>
-            <small>{user.email}</small>
-          </div>
+      <div className="user-info">
+        <img src={user.photoURL} alt="Profile"/>
+        <div>
+          <b>{user.displayName}</b>
+          <small>{user.email}</small>
         </div>
+      </div>
 
-        <nav>
-          {nav.map(([name,icon])=>(
-            <button
-              key={name}
-              className={menu===name?"nav-item active":"nav-item"}
-              onClick={()=>setMenu(name)}
-            >
-              {icon}<span>{name}</span>
-            </button>
-          ))}
-        </nav>
+      <nav>
+        {nav.map(([name,icon])=>(
+          <button
+            key={name}
+            className={menu===name?"nav-item active":"nav-item"}
+            onClick={()=>setMenu(name)}
+          >
+            {icon}<span>{name}</span>
+          </button>
+        ))}
+      </nav>
 
-        <button className="logout" onClick={()=>signOut(auth)}>
-          <LogOut/> Keluar
-        </button>
-      </aside>
+      <button className="logout" onClick={()=>signOut(auth)}>
+        <LogOut/> Keluar
+      </button>
+
+      <div style={{
+        marginTop: "auto",
+        padding: "20px 10px",
+        textAlign: "center",
+        color: "#999",
+        fontSize: "12px"
+      }}>
+        Made with ❤️ by
+        <strong style={{
+          display: "block",
+          color: "#818cf8",
+          fontSize: "18px",
+          marginTop: "5px",
+          letterSpacing: "1px"
+        }}>
+          ZuliTwin
+        </strong>
+        <small>© 2026 My Daily Journal</small>
+      </div>
+    </aside>
+
+    {/* LANJUTKAN KODE HALAMAN UTAMA ASLI ANDA DI SINI */}
 
       <main className="content">
         <header className="topbar">
